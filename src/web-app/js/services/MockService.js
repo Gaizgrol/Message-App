@@ -48,7 +48,7 @@ class MockService
             do
             {
                 // Gera um ID aleatório pra criar um usuário distinto para cada chat
-                uid = Math.round( Math.random() * mAmount * 5 );
+                uid = Math.round( Math.random() * ( mAmount + 1 ) * 5 );
             }
             while( uids.has(uid) || uid == user.id ); // Tenta novamente caso ele exista ou se o ID for igual ao nosso
             uids.add( uid );                          // Registra novo ID criado
