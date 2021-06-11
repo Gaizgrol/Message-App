@@ -1,0 +1,17 @@
+:root
+{
+    --cor-principal-fundo: cornflowerblue;
+    --cor-principal-texto: white;
+    --cor-principal-alternativo-1: #a2c2fd;
+    --cor-principal-alternativo-2: #4475fd;
+
+    --cor-secundario-fundo: white;
+    --cor-secundario-texto: black;
+    --cor-secundario-alternativo-1: #d1d1d1;
+    --cor-secundario-alternativo-2: gray;
+
+    --cor-fundo-vazio: #dfdfdf;
+
+    --cor-divisor: lightgray;
+    --cor-sombra: #aaa;
+}

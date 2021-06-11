@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Message-App</title>
+        
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        
+        <!-- Declaração dos componentes da página -->
+        <script src="js/components/ChatsComponent.js"></script>
+        <script src="js/components/MessagesComponent.js"></script>
+        
+        <!-- Declaração de modelos de dados -->
+        <script src="js/data/Chat.js"></script>
+        <script src="js/data/Message.js"></script>
+        <script src="js/data/User.js"></script>
+        
+        <!-- Declaração de serviços -->
+        <script src="js/services/APIService.js"></script>
+        <script src="js/services/MockService.js"></script>
+
+        <!-- Declaração da aplicação principal -->
+        <script src="js/Application.js"></script>
+        <!-- Declaração de funções auxiliares -->
+        <script src="js/helpers.js"></script>
+        <!-- Inicialização da aplicação -->
+        <script src="js/main.js"></script>
+    </head>
+    
+    <body class="flex-column">
+        <h1>Message-App</h1>
+        
+        <div class="outer-frame flex-row">
+
+            <!-- Componente de conversas -->
+            <div class="chat-list flex-column">
+                <h2>Conversas</h2>
+                <div id="chats" class="users flex-column">
+                    <!-- Conversas vão aqui -->
+                </div>
+            </div>
+
+            <!-- Carregamento inicial -->
+            <div id="loading" class="loading">
+                <h1>Carregando...</h1>
+            </div>
+
+            <!-- Componente de mensagens -->
+            <div style="display: none;" id="chat-tab" class="chat-messages flex-column">
+                <!-- Nome da pessoa que estaremos conversando -->
+                <h2 id="chat-name"></h2>
+
+                <div id="messages" class="messages flex-column">
+                    <!-- Mensagens vão aqui -->
+                </div>
+                
+                <!-- Entrada de dados -->
+                <div class="message-fields flex-row">
+                    <textarea id="message-input" class="message-input" rows="1" placeholder="Escrever mensagem..."></textarea>
+                    <button id="send-message" class="send-message">Enviar</button>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
