@@ -97,8 +97,10 @@ class MessagesComponent
      */
     loadTab( chat )
     {
+        const me = webApp.data.user;
+
         this.show();
-        this.changeName( chat.user.name );
+        this.changeName( chat.name(me) );
         
         this.clearInput();
         this.clearMessages();
@@ -107,7 +109,7 @@ class MessagesComponent
 
         // Adiciona as mensagens no DOM
         for ( const msg of messages )
-            this._msgs.appendChild( msg.toHTMLElement( webApp.data.user.id === msg.userId ) );
+            this._msgs.appendChild( msg.toHTMLElement( me.id === msg.userId ) );
         
         // Rola para o final da conversa
         this._msgs.scroll({ top: this._msgs.scrollHeight });

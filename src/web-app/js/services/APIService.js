@@ -26,7 +26,9 @@ class APIService
         const chats = data.chats;
 
         // Converte array de Chat para um dicionário number -> Chat
-        const chatDict = chats.reduce( ( dict, ch ) => { dict[ ch.user.id ] = ch; return dict; }, {});
+        const chatDict = chats.reduce( ( dict, ch ) => { dict[ ch.id ] = ch; return dict; }, {});
+
+        console.log( chatDict );
 
         return {
             user: data.user,

@@ -38,7 +38,7 @@ class ChatsComponent
      */
     onChatSelect( chat )
     {
-        const id = chat.user.id;
+        const id = chat.id;
         const oldChatId = webApp.data.selectedChat;
 
         // Desmarca a conversa anterior caso esteja marcada
@@ -65,7 +65,7 @@ class ChatsComponent
         const msg = chat.messages[ chat.messages.length - 1 ];
 
         // Busca o elemento e atualiza com a última mensagem chat
-        $_( `chat-${ chat.user.id }` ).querySelector('p').innerHTML = `${
+        $_( `chat-${ chat.id }` ).querySelector('p').innerHTML = `${
             msg.userId == webApp.data.user.id ? '<span class="you">Você:</span>' : ''
         } ${
             msg.content

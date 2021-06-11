@@ -11,13 +11,13 @@ class Message
     /**
      * @param { string } content 
      * @param { number } userId 
-     * @param { number } toId
+     * @param { number } chatId
      */
-    constructor( content, userId, toId )
+    constructor( content, userId, chatId )
     {
         this._data = Message.safe( content );
         this._uid = userId;
-        this._toId = toId;
+        this._chatId = chatId;
     }
     
     /**
@@ -49,8 +49,8 @@ class Message
         return this._uid;
     }
 
-    get targetId()
+    get chatId()
     {
-        return this._toId;
+        return this._chatId;
     }
 }

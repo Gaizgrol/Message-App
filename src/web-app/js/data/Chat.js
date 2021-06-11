@@ -1,14 +1,15 @@
 class Chat
 {
     /**
-     * Monta os dados de uma conversa e recebe o usuário com o qual conversaremos
+     * Monta os dados de uma conversa
      * 
-     * @param { User } otherUser
+     * @param { number } id
+     * @param { ...User } users
      */
-    constructor( otherUser )
+    constructor( id, ...users )
     {
-        this._otherUser = otherUser;
-
+        this._id = id;
+        this._users = users;
         /**@type { Message[] }*/
         this._messages = [];
     }
@@ -23,6 +24,7 @@ class Chat
         this._messages.push( ...msg );
     }
 
+
     /**
      * Cria uma visualização em HTML de uma conversa
      * 
@@ -32,18 +34,19 @@ class Chat
     toHTMLElement()
     {
         const lastMsg = this._messages[ this._messages.length - 1 ];
-        const lastMsgSentByMe = ( lastMsg.userId == webApp.data.user.id );
+        const me = webApp.data.user;
+        const lastMsgSentByMe = ( lastMsg.userId == me.id );
         // Mensagens não vistas
         const notSeen = 0; // #TODO
 
         // Cria elemento
         const el = document.createElement('div');
         // Cuida de ID e classes
-        el.id = `chat-${ this._otherUser.id }`
+        el.id = `chat-${ this.id }`
         el.classList.add( 'user', 'flex-row' );
         // Conteúdo
         el.innerHTML = `<div class="user-info">
-                            <h3>${this._otherUser.name}</h3>
+                            <h3>${this.name(me)}</h3>
                             ${ lastMsg ? `<p>${ lastMsgSentByMe ? '<span class="you">Você:</span>' : '' } ${ lastMsg.content }</p>` : '' }
                         </div>
                         <span class="badge seen">${ notSeen }</span>
@@ -51,9 +54,20 @@ class Chat
         return el;
     }
 
-    get user()
+    /**
+     * Gera o nome da conversa baseado em qual usuário você é
+     * 
+     * @param { User } me
+     * @returns 
+     */
+    name( me )
     {
-        return this._otherUser;
+        return this._users.reduce( (name, usr) => usr.id != me.id ? `${name} ${usr.name}` : name, '' );
+    }
+
+    get id()
+    {
+        return this._id;
     }
 
     get messages()

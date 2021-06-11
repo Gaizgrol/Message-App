@@ -60,12 +60,11 @@ class MockService
             for ( let m=1; m<=this._fakeMessagesPerChatRange[0]+mAmount; m++ )
             {
                 const fromId = Math.random() > 0.5 ? 1 : uid;
-                const toId = fromId == 1 ? uid : 1;
-                messages.push( new Message( `Teste ${m}`, fromId, toId ) );
+                messages.push( new Message( `Teste ${m}`, fromId, c ) );
             }
 
             // Gera a conversa
-            const chat = new Chat( otherUser );
+            const chat = new Chat( c, user, otherUser );
             chat.addMessage( ...messages );
 
             chats.push( chat );

@@ -75,26 +75,11 @@ class Application
         const myId = webApp.data.user.id;
 
         /**@type { Chat }*/
-        let chat;
+        let chat = this.data.chats[ msg.chatId ];
 
-        // Eu enviei a mensagem
-        if ( msg.userId == myId )
-        {
-            chat = this.data.chats[ msg.targetId ];
-
-            // Conversa selecionada
-            if ( selected == msg.targetId )
-                this.components.messages.appendMessage( msg );
-        }
-        // Eu recebi a mensagem
-        else
-        {
-            chat = this.data.chats[ msg.userId ];
-
-            // Conversa selecionado
-            if ( selected == msg.userId )
-                this.components.messages.appendMessage( msg );
-        }
+        // Conversa selecionada
+        if ( selected == msg.chatId )
+            this.components.messages.appendMessage( msg );
 
         // Adiciona a mensagem nos dados da conversa e atualiza a última mensagem
         chat.addMessage( msg );
