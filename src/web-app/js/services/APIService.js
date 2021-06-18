@@ -3,13 +3,6 @@ class APIService
     constructor( baseURL )
     {
         this._apiURL = baseURL;
-
-        // Gerador de dados falsos enquanto não temos integração com a API
-        /*this._mock = new MockService({
-            fakeUser: new User( 'Mock User', 1 ),
-            chatRange: [ 5, 50 ],
-            messagesRange: [ 5, 50 ]
-        });*/
     }
 
     /**
@@ -21,20 +14,24 @@ class APIService
     async getUserData( userId )
     {
         const response = await fetch( `${this._apiURL}/user/data?id=${ userId }` );
-        
-        console.log( 'Cheguei aqui' );
-        
         const data = await response.json();
         
-        console.log( data );
-        
         /**@type { Chat[] }*/
-        const chats = data.chats;
+        const chats = data.chats.map( rawChat =>
+        {
+            // JSON Usuários -> Model Usuários
+            const users = rawChat.users.map( rawUsr => new User( rawUsr.name, rawUsr.id ) );
+            // JSON Mensagens -> Model Mensagens
+            const messages = rawChat.messages.map( rawMsg => new Message( rawMsg.content, rawMsg.userId, rawMsg.chatId ) );
+            // JSON Conversa -> Model Conversa
+            const chat = new Chat( rawChat.id, ...users );
+            chat.addMessage( ...messages );
+
+            return chat;
+        });
 
         // Converte array de Chat para um dicionário number -> Chat
         const chatDict = chats.reduce( ( dict, ch ) => { dict[ ch.id ] = ch; return dict; }, {});
-
-        console.log( chatDict );
 
         return {
             user: data.user,
