@@ -4,7 +4,18 @@
 ## :memo: Descrição
 
 ### :raising_hand: Motivação
+
 O **Message-App** é um projeto de conversa em tempo real por texto pelo navegador, tendo como objetivo treinar modelagem de sistemas, integração de microsserviços, e boas práticas de desenvolvimento de software.
+
+---
+
+![Imagem](https://static.wixstatic.com/media/af86ec_5850213055aa4ae8a4ecd4195d65d08d~mv2.png/v1/fill/w_154,h_22,al_c,q_85,usm_0.66_1.00_0.01/logo.webp)
+
+* Este é um projeto da [**Resilia Educação**](https://www.resilia.work/) desenvolvido iterativamente no nosso [*canal da Twitch*](https://www.twitch.tv/resiliaeducacao)!
+* Toda sexta às 18h30 nós conversamos sobre o projeto e implementamos funcionalidades novas!
+* Além dos motivos mencionados acima, nós também queremos trazer a experiência do dia a dia de uma pessoa desenvolvedora: Planejamentos, pesquisas,  descobertas, conversas, erros e programação!
+
+---
 
 ### :microscope: Divisão da aplicação
 O projeto é dividido em 3 serviços principais: uma interface web *sem a utilização de frameworks* (planejamos utilizar alguma em iterações futuras); uma API conectada à um banco de dados `MySQL`, disponibilizada através de um servidor HTTP feito em `node.js` e um servidor de WebSockets para entregar uma comunicação em tempo real para a nossa interface, também feito em `node.js`.
