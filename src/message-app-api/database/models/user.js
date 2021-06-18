@@ -32,7 +32,13 @@ module.exports = ( sequelize, DataTypes ) =>
 					// Todas as mensagens e usuários que participam da conversa
 					include:[{
 						model: Message,
-						as: 'messages'
+						as: 'messages',
+						attributes: [ 'id', 'content', 'userId', 'chatId' ],
+					},{
+						model: User,
+						as: 'users',
+						attributes: [ 'id', 'name' ],
+						through: { attributes: [] }
 					}],
 
 					// Não inclui a tabela pivô
