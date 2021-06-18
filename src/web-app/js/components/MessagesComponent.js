@@ -34,7 +34,8 @@ class MessagesComponent
             const id = webApp.data.user.id;
 
             // Envia a mensagem e limpa a entrada
-            webApp.onMessage( new Message( content, id, webApp.data.selectedChat ) );
+            webApp.services.socket.sendMessage( new Message( content, id, webApp.data.selectedChat ) );
+            // webApp.onMessage( new Message( content, id, webApp.data.selectedChat ) );
             this.clearInput();
         };
 

@@ -32,7 +32,8 @@ class Application
          */
         this.services =
         {
-            api: new APIService( 'http://127.0.0.1:8000' )
+            api: new APIService( 'http://127.0.0.1:8000' ),
+            socket: new SocketService( 'ws://127.0.0.1:8080' )
         };
     }
 

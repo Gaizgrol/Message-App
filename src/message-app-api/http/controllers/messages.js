@@ -7,6 +7,8 @@ class MessagesController
     {
         // Busca dados da request
         const { chatId, content, userId } = { ...req.body };
+        
+        console.log( req.body );
 
         // Valida
         if ( !chatId || !content || !userId )
