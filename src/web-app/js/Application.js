@@ -32,7 +32,7 @@ class Application
          */
         this.services =
         {
-            api: new APIService( 'http://localhost:8000/api/' )
+            api: new APIService( 'http://127.0.0.1:8000' )
         };
     }
 
@@ -41,8 +41,11 @@ class Application
      */
     async onLoad()
     {
+        const url = new URL( window.location );
+        const usrId = (new URLSearchParams( url.search )).get( 'id' );
+
         // Autentica na plataforma e pega os dados do usuário
-        const userData = await this.services.api.getUserData();
+        const userData = await this.services.api.getUserData( usrId );
 
         // Se há dados, usuário autenticado
         if ( userData )
@@ -71,8 +74,8 @@ class Application
      */
     onMessage( msg )
     {
-        const selected = webApp.data.selectedChat;
-        const myId = webApp.data.user.id;
+        const selected = this.data.selectedChat;
+        const myId = this.data.user.id;
 
         /**@type { Chat }*/
         let chat = this.data.chats[ msg.chatId ];
