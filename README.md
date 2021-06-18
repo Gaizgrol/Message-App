@@ -1,4 +1,4 @@
-# :e-mail: Message-App :e-mail:
+# :e-mail: Message-App
 
 
 ## :memo: Descrição
@@ -6,28 +6,28 @@
 ### :raising_hand: Motivação
 O **Message-App** é um projeto de conversa em tempo real por texto pelo navegador, tendo como objetivo treinar modelagem de sistemas, integração de microsserviços, e boas práticas de desenvolvimento de software.
 
-### :microscope: Tecnologias utilizadas
-O projeto é dividido em 3 serviços principais: uma interface feita com `HTML`, `CSS` e `JavaScript` *sem a utilização de frameworks*; uma API conectada à um banco de dados `MySQL`, disponibilizada através de um servidor HTTP feito em `node.js` e um servidor de WebSockets para entregar uma comunicação em tempo real para a nossa aplicação, também feito em `node.js`.
+### :microscope: Divisão da aplicação
+O projeto é dividido em 3 serviços principais: uma interface web *sem a utilização de frameworks* (planejamos utilizar alguma em iterações futuras); uma API conectada à um banco de dados `MySQL`, disponibilizada através de um servidor HTTP feito em `node.js` e um servidor de WebSockets para entregar uma comunicação em tempo real para a nossa interface, também feito em `node.js`.
 
 ### :monocle_face: Mais detalhes sobre os componentes do projeto
 Informações mais detalhadas sobre os serviços estão disponíveis nos links abaixo:
 
 * :computer: [Interface](./src/web-app/)
-* :gear: [API](./src/api/)
-* :gear: [Servidor de WebSockets](./src/ws-server/)
+* :gear: [API](./src/message-app-api/)
+* :radio: [Servidor de WebSockets](./src/ws-server/)
 
 ---
 
 
 ## :books: Dependências
 
-O projeto foi desenvolvido com:
-* `node` **≥** `10.16.0`
-* `npm` **≥** `6.9.0`
-* `mysql` **≥** `8.0.7`
-* Navegador com suporte a `WebSockets`
+O projeto foi projetado para ser executado em um ambiente com:
+* `node v14.17.1`
+* `npm 6.14.13`
+* `mysql 8.0.7`
+* `Firefox 89.0.1` ou outro navegador com suporte à [Fetch API](https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API) e [WebSockets API](https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API)
 
-É possível utilizar versões menores que as especificadas, porém não recomendo pois podem ocorrer possíveis inconsistências na hora da execução.
+*:warning: Aviso: É possível utilizar versões menores que as especificadas, porém não recomendamos pois podem ocorrer possíveis inconsistências e lançamento de erros na hora da execução (por exemplo, `node` < `14.0.0` não possui suporte para [operadores de coalescência nula](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator)).*
 
 ---
 
@@ -35,38 +35,35 @@ O projeto foi desenvolvido com:
 ## :hammer_and_pick: Instalação
 
 ### :computer: Interface
-* > Não é necessária a instalação da interface, dado que ela é carregada como arquivos estáticos no navegador.
+> Não é necessária a instalação da interface
 
 ### :gear: API
-* > OBS: Ainda não está pronta!
-* Dentro da pasta `src/api/`, executar
+* Execute dentro da pasta `src/message-app-api/`:
   ```
   npm install
+  ```
+* Inicie o serviço do `MySQL` em sua máquina
+* Crie um banco de dados `message_app_development`
+* Após a instalação execute dentro da pasta `src/message-app-api/database`:
+  ```
+  npx sequelize-cli db:migrate
+  npx sequelize-cli db:seed:all
   ```
 
-### :gear: Servidor de WebSockets
-* > OBS: Ainda não está pronto!
-* Dentro da pasta `src/ws-server/`, executar
-  ```
-  npm install
-  ```
+### :radio: Servidor de WebSockets
+> **#TODO**: Ainda não está pronto!
 
 ## :white_check_mark: Execução
-* > OBS: Ainda não está pronto!
+
 
 ### :computer: Interface
 * Abrir o arquivo `src/web-app/index.html` em um navegador
 
 ### :gear: API
-* > OBS: Ainda não está pronta!
-* Dentro da pasta `src/api/`, executar
+* Execute dentro da pasta `src/message-app-api/`:
   ```
   npm start
   ```
 
-### :gear: Servidor de WebSockets
-* > OBS: Ainda não está pronta!
-* Dentro da pasta `src/ws-server/`, executar
-  ```
-  npm start
-  ```
+### :radio: Servidor de WebSockets
+> **#TODO**: Ainda não está pronto!
