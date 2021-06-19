@@ -28,12 +28,12 @@ class Application
         /**
          * Integração
          * 
-         * @type { { api: APIService } }
+         * @type { { api: APIService; socket: SocketService } }
          */
         this.services =
         {
             api: new APIService( 'http://127.0.0.1:8000' ),
-            socket: new SocketService( 'ws://127.0.0.1:8080' )
+            socket: new SocketService()
         };
     }
 
@@ -54,6 +54,8 @@ class Application
             // Salva os dados na aplicação
             this.data.user = userData.user;
             this.data.chats = userData.chats;
+
+            this.services.socket.connect( `ws://127.0.0.1:8080?userId=${userData.user.id}` );
 
             // Oculta o texto de carregamento
             $_( 'loading' ).style.display = 'none';

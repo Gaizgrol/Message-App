@@ -1,5 +1,5 @@
 const db = require( '../../database/models/' );
-const { Message } = db;
+const { Chat, Message, User } = db;
 
 class MessagesController
 {
@@ -17,7 +17,20 @@ class MessagesController
         // Cria a mensagem
         const message = await Message.create({ chatId, content, userId });
         
-        res.status( 201 ).json({ message });
+        // Adiciona os usuários pertencentes a conversa na response
+        const chat = await Chat.findOne({
+            attributes: [ 'id', 'name' ],
+            where: { id: message.chatId },
+            include: {
+                model: User,
+                as: 'users',
+                attributes: [ 'id', 'name' ],
+                through: { attributes: [] }
+            }
+        });
+        
+        
+        res.status( 201 ).json({ message, chat });
     }
 }
 

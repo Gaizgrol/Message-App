@@ -1,6 +1,12 @@
 class SocketService
 {
-    constructor( url )
+    constructor()
+    {
+        /** @type { WebSocket } */
+        this._connection = null;
+    }
+
+    connect( url )
     {
         this._connection = new WebSocket( url );
         this._connection.onmessage = this.receiveMessage;
